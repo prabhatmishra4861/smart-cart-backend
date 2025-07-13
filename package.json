@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "SET NODE_ENV=production && node  app.js --max-old-space-size=10240 --logHeapUsage",
+    "test": "NODE_ENV=test  node --inspect  test/clearTestDB.js  &&  node --max-old-space-size=10240 --expose-gc ./node_modules/.bin/jest --coverage --runInBand --logHeapUsage --no-compilation-cache"
+  },
+  "engine": {
+    "node": "20.10.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "compression": "^1.7.5",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "joi-objectid": "^4.0.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.16.2",
+    "multer": "^2.0.1",
+    "papaparse": "^5.5.3",
+    "stream": "^0.0.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "vue-virtual-scroller": "^1.1.2"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.4"
+  }
+}
