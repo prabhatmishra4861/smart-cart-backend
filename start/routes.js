@@ -8,7 +8,8 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const express = require("express");
 
-const productRoute = require("../routes/product.route")
+const productRoute = require("../routes/product.route");
+const { swaggerUi, swaggerSpec } = require("../swagger/swagger");
 
 
 
@@ -57,9 +58,13 @@ module.exports = function (app,conn) {
   app.use(express.static(path.join(__dirname, "../public")));
 
   //routes
-  app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+  // app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  
   app.use("/products", productRoute);
- 
+  app.get("/", (req, res) => {
+    res.redirect("/api-docs");
+  }); 
  
   //errorHandler
   app.use(errorHandler);
